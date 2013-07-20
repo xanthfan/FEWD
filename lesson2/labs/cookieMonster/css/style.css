@@ -10,12 +10,113 @@ Developed @ General Assembly in NYC
 body {
 	/* set up a background image */
 	
-	
+	color: #555753;
 	/* the follow is the code to have the image display as a full page */
-	background-position: center;
-	background-attachment: fixed;
-	-webkit-background-size: cover; /* the next 3 lines are "browser prefixes", they are necessary to include for CSS3 techniques */
+
+	-webkit-background-size: cover;  the next 3 lines are "browser prefixes", they are necessary to include for CSS3 techniques 
 	-moz-background-size: cover;
 	-o-background-size: cover;
-	background-size: cover;
+/*	background-size: cover;
+	margin: 0; 
+	padding: 0;
+
+	background-color:#b0c4de;
+	background-position: center;
+	background-attachment: fixed;
+	background-image:url('cookie-monster.jpg');
+	background-repeat:no-repeat;
+	background-position:right top;
+	background-size:80px 60px;*/
+}
+
+
+#portrait {
+	width: 400px;
+	height: 300px;
+	background-image:url('cookie-monster.jpg');
+	background-size:400px 300px;
+	border-left;
+	position:absolute;
+	left:75px;
+	top:50px;
+
+}
+
+#name {
+	width: 350px;
+	height: 225px;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top:75px;
+	border-top;
+	position:absolute;
+	left:475px;
+	top:50px;
+	text-align:center;
+	text-transform:uppercase;
+	letter-spacing: 3px;
+	vertical-align: top;
+}
+
+#intro {
+	width: 350px;
+	height: 225px;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top:75px;
+	border-top;
+	background-color:#b0c4de;
+	position:absolute;
+	left:875px;
+	top:50px;
+	text-align:justify;
+}
+
+#title {
+	width: 350px;
+	height: 210px;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top:90px;
+	border-top;
+	position:absolute;
+	left:75px;
+	top:350px;
+	text-align:center;
+}
+
+#flavors {
+	width: 350px;
+	height: 225px;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top:75px;
+	border-top;
+	background-color:#b0c4de;
+	position:absolute;
+	left:475px;
+	top:350px;
+	text-align:justify;
+}
+
+#experience {
+	width: 350px;
+	height: 225px;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top:75px;
+	border-top;
+	position:absolute;
+	left:875px;
+	top:350px;
+	text-align:justify;
+}
+
+#links {
+	width: 50px;
+	height: 200px;
+	position:absolute;
+	left:1300px;
+	top:275px;
+	line-height: 300%;
 }
