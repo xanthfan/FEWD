@@ -41,11 +41,20 @@ li.menu{
   	width: 180px;
 }
 
+img.about{
+	float:left;
+}
+
+p.about {
+	font-size:10;
+}
+
 
 a:link {
 	text-decoration:none;
 	color:#ffffff;
 }
+
 
 a:active{
 	text-decoration:none;
