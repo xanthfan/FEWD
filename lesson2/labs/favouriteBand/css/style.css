@@ -9,6 +9,8 @@ body{
 	margin-right:auto;
 }
 
+
+
 /* Sections */
 #splash{
 	background-repeat:no-repeat;
@@ -23,6 +25,10 @@ body{
 	margin-top:60px;	
 }		
 
+iframe.video {
+	margin-top:60px;
+}
+
 ul.menu{
 	margin:0 auto;
 }
@@ -34,6 +40,7 @@ li.menu{
   	text-align: center;
   	width: 180px;
 }
+
 
 a:link {
 	text-decoration:none;
