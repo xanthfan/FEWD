@@ -27,27 +27,112 @@ Developer @GA in NYC
 }
 
 body {
-     background-color: #d6d6d6;
-     background-image:url('../images/background.jpg');
-     background-repeat:repeat-x;
-     color: #000000
+     background:#d6d6d6 url('../images/background.jpg') repeat-x;
 }
 
-a:link {color:#cc6633;} 
-
-#container {
-     margin:0 auto;
+#container{
+/*     border-style:dotted;*/
+/*     border-color:black;*/
      width:940px;
+     margin:0 auto;
+}
+#header {
+/*     border-style:solid;*/
+/*     border-color:red;*/
+     margin-top:15px;
+     margin-bottom:30px;
 
 }
 
-#main {
+#main{
      width:640px;
+/*     border-style:solid;*/
+/*     border-color:yellow;*/
+     float:left;
+     margin:0px 14px 30px 0px;
+     background-color:#ffffff;
+
 }
 
-#sidebar {
-     width:280px;
+#card{
+    width:600px;
+    margin:0 auto;
 }
+
+p.author{
+  border-top-style:dotted;
+  border-bottom-style:solid;
+  border-width:1px;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+
+
+a:link {
+  color:#cc6633;
+  text-decoration:none;
+}
+
+#sidebar{
+     width:280px;
+     float:left;     
+    background-color:#ffffff;
+    padding-top:20px;
+    padding-bottom:20px;    
+}
+
+p.sidebar{
+  line-height:10px;
+  font-weight:800;
+
+}
+
+img.sidebar{
+  display:block;
+  margin:20px auto;
+}
+
+#archive{
+  width:220px;
+  margin:0 auto;
+}
+
+#blogroll{
+  width:220px;
+  margin:30px auto 20px auto;
+/*  margin:0 auto;*/
+}
+
+
+#footer{
+     clear:left;
+}
+
+a.facebook{
+  height:42px;
+  width:42px;
+  position:absolute;
+  margin: 0px 0 0 -21px;
+  left:50%;
+}
+
+a.twitter{
+  height:42px;
+  width:42px;
+  position:absolute;
+  margin: 0px 0 0 -63px;
+  left:50%;
+}
+
+a.pinterest{
+  height:42px;
+  width:42px;
+  position:absolute;
+  margin: 0px 0 0 21px;
+  left:50%;
+}
+
 
 h1.skm {
   margin:0 auto;
@@ -60,16 +145,7 @@ h1.skm {
   overflow: hidden;
 }
 
-
-h2{
-     font-size:20px;
-}
-
 p{
-     font-size:12px;
+  font-size:12px;
 }
 
-img
-{
-float:left;
-}
