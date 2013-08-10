@@ -1,3 +1,10 @@
+ul.social{
+	border-top:dashed;
+	border-top-color:red;
+	border-bottom:solid;
+	border-bottom-color:blue;
+}
+
 li {
 	float:left;
 }
@@ -8,6 +15,8 @@ li a  {
 	width:60px;
 	height:60px;
 	text-indent: -9999px;
+	transition: .5s;
+	-webkit-transition: .5s;
 }
 
 .linkedin a {background-position: 0px 0px;}
@@ -26,7 +35,3 @@ li a  {
 
 .rss a:hover {background-position: -180px -60px;}
 
-li a {
-	transition: .5s;
-	-webkit-transition: .5s;
-}
