@@ -139,6 +139,26 @@ img.shadow{
 	margin-top:-4px;
 }
 
+#inset_box{
+	border:solid;
+	border-style:inset;
+	border-width:2px;
+}
+
+#inset_writing{
+	float:left;
+	width:600px;
+	padding-top:30px;
+	padding-left:30px;
+}
+
+#inset_button{
+	float:right;
+	padding-top:30px;
+	padding-bottom:30px;
+	padding-right:30px;
+}
+
 /*----------------------------------------------------------------------------- 
 Bottom of page
 -----------------------------------------------------------------------------*/
