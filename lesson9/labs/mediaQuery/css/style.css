@@ -17,6 +17,7 @@ body {
 	display: inline;
 	float: left;
 	margin: 4px;
+	background-color: rgb(248,12,18);
 }
 
 h1 {
@@ -37,3 +38,54 @@ a:hover {
 	clear: both;
 }
 	
+
+@media (min-width: 479px) and (max-width:559px){
+	#container {
+		width:100%;
+	}
+	.span-one-third{
+		background-color: rgb(238,17,0)
+		color:rgb(59,12,189);
+		float:none;
+		width:100%;
+	}
+}
+
+@media (min-width: 559px) and (max-width:767px){
+	#container {
+		width: 720px;
+	}
+	.span-one-third{
+		color:rgb(51,17,187);
+		background-color: rgb(255,102,68)
+		float:left;
+		width:33%;
+	}
+}
+
+@media  (min-width: 767px) and (max-width:959px){
+	#container {
+		width:;
+	}
+	.span-one-third{
+		color:;
+		float:;
+		width:;
+	}
+}
+
+@media  (min-width: 959px) and (max-width:1159px){
+	#container {
+		width:;
+	}
+	.span-one-third{
+		color:;
+		float:;
+		width:;
+	}
+}
+
+@media  (min-width: 1159px) {
+	/*rules
+}
+*/
