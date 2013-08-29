@@ -29,8 +29,6 @@ Colors : blue? orange? brown? cream? pink?
 
 Omnigraffe? 
 
-Business Model : how to make money?
-
 
 Header
  Site Identifier
