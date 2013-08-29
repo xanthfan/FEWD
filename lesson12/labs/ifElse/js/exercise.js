@@ -14,7 +14,7 @@ var REPLACE_ME = true
 var timePeriod;
 var day = 'Tuesday';
 
-if(REPLACE_ME) {
+if(day === 'Saturday' || day === 'Sunday') {
  timePeriod = "Closed for business";
 } else {
  timePeriod = "Open for business";
@@ -31,7 +31,7 @@ var day = 'Thursday';
 
 if(day == 'Monday' || day == 'Tuesday') {
   partOfWeek = 'Beginning';
-} else if(REPLACE_ME) {
+} else if(day === 'Wednesday') {
   partOfWeek = 'Middle';
 } else if(day == 'Thursday' || day == 'Friday'){
   partOfWeek = 'End';

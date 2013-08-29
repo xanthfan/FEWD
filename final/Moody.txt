@@ -1,0 +1,76 @@
+Website that tracks your mood, and everyone else's.
+
+Use cartoon faces as way of confirming mood. Can suggest new faces / emotions. 
+
+Can have user query by location, education, age group, ethnicity, etc, and even request new indexes.
+
+Also, track the emotional state of others around them (At home, work, social circle)
+
+Audience : people who are not feeling happy at the present time (because happy people wouldn't be particularly curious about how other people are feeling)
+
+What I want people to do with the information: feel better about their situation (they are not alone) Let them see some commonality with the situation of other people. Get them looking for solutions to their problems. 
+
+Get them to see this within a few minutes. Get them coming back ... how?
+
+Interactivity? - get as many visitors actually participating in poll and looking for information. 
+
+What characterisitcs of my audience : (younger, web savvy)
+
+
+Key words : healing, hopeful, 
+
+Personas : get from Dear Abby columns
+
+Voice, Tone : Calm, sympatheic, hopeful
+
+Colors : blue? orange? brown? cream? pink?
+
+3 pass visual model
+
+Omnigraffe? 
+
+Business Model : how to make money?
+
+
+Header
+ Site Identifier
+ 
+Content
+
+Footer
+
+Sidebar
+
+============================
+
+
+About us
+
+What's new
+
+Press
+
+Follow us
+
+Newsletter
+
+Support
+
+============================
+
+Blurb
+
+Poll
+
+============================
+
+Search
+
+============================
+
+Privacy Policy
+
+Terms and Conditions
+
+copyright
+

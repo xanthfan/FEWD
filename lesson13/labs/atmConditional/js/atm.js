@@ -9,3 +9,30 @@ This is a banking application. This program will update your balance with your d
 -	Depending on their transaction choice either add or substract the balance. 
 -	Print the new balance to the console.
 */
+
+var balance = 1000;
+var transaction;
+var amount;
+
+do{
+	transaction = prompt('(d)eposit or (w)ithdrawl or (e)xit?');
+
+	if  (transaction === 'd' || transaction === 'w' ){
+		amount = parseInt(prompt('How much?'));
+
+		if (transaction === 'd') {
+			balance = balance + amount;
+			prompt('Your current balance: $' + balance);
+		} else if (transaction === 'w') {
+			balance = balance - amount;
+			prompt('Your current balance: $' + balance);
+		}  
+	}
+	
+	if (transaction === 'e') {
+			prompt('Your current balance: $' + balance);
+	}
+
+} while (transaction !== 'e')
+
+
