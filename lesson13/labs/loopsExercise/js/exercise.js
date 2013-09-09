@@ -10,6 +10,10 @@
  */
    var myArray = [];
 
+   for ( i = 1 ; i <= 10; i++ ) {
+   		console.log(i);
+   		myArray.push(i);
+   }
 
 
 /**
@@ -20,7 +24,13 @@
 var sub = 100;
 var start = 1;
 
-
+j = 1;
+sub = 100;
+while (j <= 10) {
+	sub = (sub - j);
+	console.log(sub);
+	j++;
+}
 
 /**
  * Question 3
@@ -30,7 +40,11 @@ var start = 1;
 var someNums = [3, 1, 88, -1, 33, 96, 35, 12, 72];
 var largest_num = someNums[0];
 
-
+for ( i = 0 ; i < 10 ; i++) {
+	if (someNums[i] > largest_num) {
+		largest_num = someNums[i];
+	}
+}
 
 /**
  * Question 4
@@ -38,6 +52,12 @@ var largest_num = someNums[0];
  * Store that number in "small"
  */
 var small = someNums[0];
+
+for ( i = 1 ; i < 10 ; i++) {
+	if (someNums[i] < small) {
+		small = someNums[i];
+	}
+}
 
 /**
  * Question 5
@@ -49,6 +69,15 @@ var firstArray = ['peaches', 'apples', 'pears', 'oranges', 'plums', 'water melon
 var secondArray = ['blueberries', 'water melon', 'tomatoes', 'apples', 'plums', 'oranges', 'cantaloupe'];
 var totalDuplicates = 0;
 
+for (i = 0; i < firstArray.length ; i++) {
+	for (j = 0; j < secondArray.length ; j++){
+		if (firstArray[i] === secondArray[j]){
+			totalDuplicates++;
+			break;
+		}
+	}
+}
+	
 
 /**
  * Question 6 - ******BONUS******
@@ -58,5 +87,15 @@ var totalDuplicates = 0;
  */
 
 var numbers = [3, 7, 1, 3, 23, 7, 98, 26, 1];
-var totalUniques = 0;
+var totalUniques = numbers.length;
+
+for (i = 0; i < numbers.length - 1 ; i++) {
+	for (j = i+1 ; j < numbers.length ; j++){
+		if ( i !== j && numbers[i] === numbers[j]){
+			totalUniques--;
+			break;
+		}
+	}
+}
+
 

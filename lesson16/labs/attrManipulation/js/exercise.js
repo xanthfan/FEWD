@@ -10,6 +10,7 @@
  */
 var q1 = $('#fig1 img').attr('src');
 
+console.log(q1);
 
 /**
  * Question 2:
@@ -17,6 +18,7 @@ var q1 = $('#fig1 img').attr('src');
  * "http://placekitten.com/500/200"
  */
 
+$('#fig1 img').attr('src',"http://placekitten.com/500/200");
 
 /**
  * Question 3:
@@ -25,27 +27,38 @@ var q1 = $('#fig1 img').attr('src');
  * Print q3 variable to the console.
  */
 
+var q3 = $('header').attr('role');
+
+console.log(q3);
 
 /**
  * Question 4:
  * Add the "success" class to each of "the-fact" list items
  */
 
+$('#the-facts li').addClass("success");
 
 /**
  * Question 5:
  * Check if the figure with id "fig2" has the class "awesome". If not, apply it
  */
 
+if (!$('#fig2').hasClass("awesome")){
+	$('#fig2').addClass("awesome");
+}
 
 /**
  * Question 6:
  * That paragraph with the "warn" class looks super intimidating. Remove the warn class.
  */
 
+$('p').removeClass('warn');
 
 /**
  * Question 7:
  * Remove the "success" class from the first two <li>'s.
  */
 
+$("li:first").removeClass('success');
+
+$("#the-facts li:nth-child(2)").removeClass('success');

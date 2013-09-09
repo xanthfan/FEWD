@@ -12,12 +12,20 @@
  * - price: 3.50
  */
 
+var lunch = {
+	sandwich: "Peanut Butter",
+	drink: "Apple Juice",
+	price: 3.50
+}
+
+
 
 /**
  * Question 2
  * Convert lunch to JSON and store it in the variable 'q2'
  */
 
+var q2 = JSON.stringify(lunch);
 
 /**
  * Question 3
@@ -25,3 +33,4 @@
  * back into an object. Store it in 'q3'
  */
 
+var q3 = JSON.parse(q2);

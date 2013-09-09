@@ -59,3 +59,5 @@ a {
 
 	-webkit-transition: all 3s;
 }
+
+#container.colored-container { background-color: red; }
