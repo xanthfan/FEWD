@@ -9,3 +9,14 @@
  *    be typed in it. 
  *    Hint, remeber what event.preventDefault() does? 
  */
+
+
+$('html').keypress(function(event){
+	if ((mousover box) && (is a vowel)){
+		event.preventDefault()}
+	else{
+		$('#justPressed').text(event.which);
+	}
+	
+});
+

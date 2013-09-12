@@ -1,8 +1,9 @@
-* {
+{
      -moz-box-sizing: border-box; /* Firexfox */
      -webkit-box-sizing: border-box; /* Safari/Chrome/iOS/Android */
      box-sizing: border-box; /* IE */
 }
+
 
 .clearfix:after {
      content: ".";
@@ -19,16 +20,19 @@
 
 #container_1{
      background-color:#33CCFF;
+     width:960px;
+     margin:0 auto;
      margin-bottom:20px;
 }
 
 #header{
      overflow-y: hidden;
-     width:960px;
-     margin:0 auto;
+/*     width:960px;
+     margin:0 auto;*/
 }
 
 #logo{
+     margin-left:30px;
      float:left;
 }
 
@@ -40,14 +44,35 @@
 
 
 #group_A{
-     margin-top:115px;
+     margin-top:100px;
      margin-left:10px;
      margin-right:5px;
+     padding-top:2px;
+     padding-left:4px;
      float:right;
+     border:2px solid;
+     border-radius:25px;
+     width:72px;
+     height:25px;
+     background-color:white;
+}
+
+#group_A:link{
+    text-decoration:none;
+}
+
+#group_A:visited{
+     color:#303534;
 }
 
 #group_A:hover{
-     margin-top:117px;
+/*     margin-top:117px;*/
+}
+
+
+#login{
+/*     border:2px solid;
+     border-radius:25px;*/
 }
 
 #container_2{
@@ -55,6 +80,7 @@
      margin:0 auto;
      overflow-y: hidden;
      font:Georgia;
+     background-color:white;
 }
 
 #sidebar_A{
@@ -69,12 +95,10 @@ ul
     margin-top:0px;
 }
 
-li{
+
+#group_B{
      font-size:20px;
      font-color:#303534;
-}
-
-li a{
      text-decoration:none;
      display: block;
      background-color:#FFBB00;
@@ -83,11 +107,11 @@ li a{
      color:#303534;
 }
 
-li a:visited{
+#group_B:visited{
      color:#303534;
 }
 
-li a:hover{
+#group_B:hover{
      background-color:#FFDD00;     
 }
 
@@ -100,6 +124,7 @@ li a:hover{
      display:block;
      width:440px;
      margin:0 auto;
+     margin-top:4px;
 }
 
 #sidebar_C{
@@ -112,6 +137,7 @@ li a:hover{
 #container_3{
      background-color:#303534;
      color:#BBBBBB;
+     margin:0 auto;
      margin-top:80px;
 }
 
@@ -119,4 +145,169 @@ li a:hover{
      height:100px;
      width:960px;
      margin:0 auto;
+}
+
+
+
+/* Tablet Layout: 768px.
+ * Gutters: 24px.
+ * Outer margins: 28px.
+ * Inherits styles from: Default Layout.
+ */
+
+
+@media only screen and (min-width:768px) and (max-width: 991px){
+     body {          
+     }
+     #container_1{
+          width:640px;
+     }
+     #container_2{
+          width:640px;
+     }
+     #sidebar_A{
+           width:170px;
+           margin-right:20px;
+     }
+     li a{
+          margin: 5px 0px 6px 0px;
+     }
+
+     #sidebar_B{
+           width:450px;
+     }
+     #sidebar_C{
+          margin-top:10px;
+          width:640px;
+          clear:left;
+     }
+     #container_3{
+          margin-top:;
+          width:640px;
+     }
+}
+
+
+
+@media only screen and (min-width:480px) and (max-width: 767px){
+
+     #container_1{
+          width:480px;
+          margin-bottom:10px;
+     }
+
+     #logo img{
+          width:200px;
+          margin-top:-10px;
+     }
+
+     #tagline img{
+          margin-top:-17px;
+          width:200px;
+     }
+
+     #container_2{
+          width:480px;
+     }
+     #sidebar_A{
+           width:120px;
+           margin-right:20px;
+     }
+     li a{
+          margin: 5px 0px 6px 0px;
+     }
+
+
+
+     #sidebar_B{
+           width:120px;
+     }
+
+     #sidebar_B img{
+         width:340px;
+         height:265px; 
+     }
+
+     ul
+     {
+         list-style-type: none;
+         margin-left:-50px;
+         margin-top:0px;
+     }
+
+
+     #group_B{
+          font-size:17px;
+     }
+
+     #sidebar_C{
+          margin-top:0px;
+          width:470px;
+          clear:left;
+     }
+     #container_3{
+          margin-top:;
+          width:480px;
+     }
+
+}
+
+
+/* Mobile Layout: 320px.
+ * Gutters: 24px.
+ * Outer margins: 34px.
+ * Inherits styles from: Default Layout.
+ */
+
+@media only screen and (min-width:320px) and (max-width: 479px){
+     #container_1{
+          width:320px;
+     }
+     #logo img{
+          float:none;
+          margin:0 auto;
+     }
+     #tagline{
+          float:none;
+          margin-left:34px;
+          margin-top:-10px;
+     }
+     #container_2{
+          width:320px;
+     }
+     #sidebar_A{
+          width:320px;
+          float:none;
+     }
+
+     ul{
+          list-style-type: none;
+          margin-left:-40px;
+          margin-top:0px;
+     }
+
+
+     #group_B{
+          font-size:20px;
+          font-color:#303534;
+          text-decoration:none;
+          display: block;
+          background-color:#FFBB00;
+          margin: 5px 0px 5px 0px;
+          padding: 10px 0px 10px 0px;
+          color:#303534;
+          text-align:center;
+     }
+
+     #sidebar_B{
+          display:none;
+     }
+     #sidebar_C{
+          float:none;
+          margin-top:10px;
+          width:320px;
+     }
+     #container_3{
+          width:320px;
+     }
 }
