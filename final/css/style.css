@@ -96,7 +96,7 @@ ul
 }
 
 
-#group_B{
+.group_B{
      font-size:20px;
      font-color:#303534;
      text-decoration:none;
@@ -107,11 +107,11 @@ ul
      color:#303534;
 }
 
-#group_B:visited{
+.group_B:visited{
      color:#303534;
 }
 
-#group_B:hover{
+.group_B:hover{
      background-color:#FFDD00;     
 }
 
@@ -236,7 +236,7 @@ ul
      }
 
 
-     #group_B{
+     .group_B{
           font-size:17px;
      }
 
@@ -287,7 +287,7 @@ ul
      }
 
 
-     #group_B{
+     .group_B{
           font-size:20px;
           font-color:#303534;
           text-decoration:none;
