@@ -33,7 +33,7 @@ $(document).ready(function(){
   $("#section_3").append("<div>hello</div>");
 
   $.getJSON("http://xanthfan.github.io/FEWD/final/data/sample.json",function(json){
-      $.each(json.result, function(i, course){
+      $.each(json.results, function(i, course){
         $("#section_3").append("<div>" + course.title + "</div>");
       });
     });
