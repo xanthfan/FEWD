@@ -31,8 +31,8 @@ $(document).ready(function(){
   });
 
   $.getJSON("http://xanthfan.github.io/FEWD/final/data/sample.json",function(json){
-      $.each(json.result, function(i, field){
-        $("#section_3").append(field + " ");
+      $.each(json.result, function(i, course){
+        $("#section_3").append("<div>" + course.title + "</div>");
       });
     });
      
