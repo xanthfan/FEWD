@@ -30,7 +30,7 @@ $(document).ready(function(){
     alert("Text: " + $("#test").text());
   });
 
-   $("#section_3").append("hello");
+  $("#section_3").append("<div>hello</div>");
 
   $.getJSON("http://xanthfan.github.io/FEWD/final/data/sample.json",function(json){
       $.each(json.result, function(i, course){
