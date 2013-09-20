@@ -12,6 +12,34 @@
  * 6. CLEAR BUTTON CLICK EVENT FUNCTION
  */
 
+
+
 $(document).ready(function(){
-		
+	$('span[id$="error"]').hide();
+
+		$('input[type="submit"]').click(function(event){
+			event.preventDefault();
+
+			var name = $('#user_name').val();
+
+			if (name.length < 3) {
+				$('#user_name_error').show();
+			} else {
+				$('#user_name_error').hide();
+			}
+
+			if (isNan(age)) {
+				$('#user_age_error').show();
+			} else {
+				$('#user_age_error').hide();
+			}
+			
+var pattern = /^[0-9]+[0-9]+[0-9]+[_.-]+[0-9]+[0-9]+[0-9]+[_.-]+[0-9]+[0-9]+[0-9]+[0-9]$/;
+
+			if 	(pattern.test(phone)) {
+				$('#user_ph_error').hide();
+			}	else {
+				$('#user_ph_error').show();
+			}	
+		})
 });

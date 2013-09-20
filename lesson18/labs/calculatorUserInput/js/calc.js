@@ -6,3 +6,11 @@ Hints:
 3.) Learn how to select specific inputs using eq selectors: http://api.jquery.com/eq-selector/
 
 */
+var val = 0;
+
+$(document).ready(function(){
+  $("#addition input:eq(0)").change(function(){
+    console.log($(this).val());
+    $('#addition input:eq(2)')
+  });
+});

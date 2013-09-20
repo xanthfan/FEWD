@@ -22,6 +22,31 @@ var total = 0;
 $(function(){
 
 	//$(box to be updated).click(function call);
-
-
+	$('#a10').click( function(){ addition(10); });
+	$('#a20').click( function(){ addition(20); });
+	$('#a30').click( function(){ addition(30); });
+	$('#n10').click( function(){ addition(-10); });
+	$('#n20').click( function(){ addition(-20); });
+	$('#n30').click( function(){ addition(-30); });
+	$('#red').click(red);
 });
+
+function addition(value){
+	total = total + value;
+	$('#out').text(total);
+}
+
+// function a20(){
+// 	total = total + 20;
+// 	$('#out').text(total);
+// }
+
+// function a30(){
+// 	total = total + 30;
+// 	$('#out').text(total);
+// }
+
+function red(){
+	$('#out').attr("background-color","red");
+}
+

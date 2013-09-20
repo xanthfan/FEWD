@@ -18,64 +18,28 @@
 	clear: both;
 }
 
-#container_1{
+#section_1{
      background-color:#33CCFF;
      width:960px;
      margin:0 auto;
      margin-bottom:20px;
 }
 
-#header{
-     overflow-y: hidden;
-/*     width:960px;
-     margin:0 auto;*/
-}
-
 #logo{
      margin-left:30px;
-     float:left;
+/*     border-style:dotted;
+     border-width:1px;*/
 }
 
 #tagline{
-     margin-top:80px;
-     float:left;
-     width:100px;
+     width:350px;
+     margin-bottom:25px;
+/*     border-style:dotted;
+     border-width:1px;*/
 }
 
 
-#group_A{
-     margin-top:100px;
-     margin-left:10px;
-     margin-right:5px;
-     padding-top:2px;
-     padding-left:4px;
-     float:right;
-     border:2px solid;
-     border-radius:25px;
-     width:72px;
-     height:25px;
-     background-color:white;
-}
-
-#group_A:link{
-    text-decoration:none;
-}
-
-#group_A:visited{
-     color:#303534;
-}
-
-#group_A:hover{
-/*     margin-top:117px;*/
-}
-
-
-#login{
-/*     border:2px solid;
-     border-radius:25px;*/
-}
-
-#container_2{
+#section_2{
      width:960px;
      margin:0 auto;
      overflow-y: hidden;
@@ -83,12 +47,12 @@
      background-color:white;
 }
 
-#sidebar_A{
+#sidebar_left{
      width:230px;
      float:left;
 }
 
-ul
+#sidebar_left ul
 {
     list-style-type: none;
     margin-left:-40px;
@@ -96,7 +60,7 @@ ul
 }
 
 
-.group_B{
+.buttons{
      font-size:20px;
      font-color:#303534;
      text-decoration:none;
@@ -107,34 +71,45 @@ ul
      color:#303534;
 }
 
-.group_B:visited{
+.buttons:visited{
      color:#303534;
 }
 
-.group_B:hover{
+.buttons:hover{
      background-color:#FFDD00;     
 }
 
-#sidebar_B{
+#center_content{
      width:480px;
      float:left;
 }
 
-#sidebar_B img{
+.changingContent{
      display:block;
      width:440px;
+     height:340px;
      margin:0 auto;
      margin-top:4px;
 }
 
-#sidebar_C{
+
+#mobile_logo{
+     display:none;
+}
+
+#blue_oval{
+/*     display:none;*/
+}
+
+#sidebar_right{
      width:240px;
      float:left;
      font-size:16px;
      font-family:Georgia;
 }
 
-#container_3{
+#section_3{
+     width:960px;
      background-color:#303534;
      color:#BBBBBB;
      margin:0 auto;
@@ -147,7 +122,9 @@ ul
      margin:0 auto;
 }
 
-
+.tempClass{
+     display:block;
+}
 
 /* Tablet Layout: 768px.
  * Gutters: 24px.
@@ -159,93 +136,118 @@ ul
 @media only screen and (min-width:768px) and (max-width: 991px){
      body {          
      }
-     #container_1{
+     #section_1{
           width:640px;
      }
-     #container_2{
+     #section_2{
           width:640px;
      }
-     #sidebar_A{
+     #sidebar_left{
            width:170px;
            margin-right:20px;
      }
-     li a{
+
+     #sidebar_left ul{
+          margin-left:-50px;
+     }
+
+     .buttons{
+          font-size:17px;
           margin: 5px 0px 6px 0px;
      }
 
-     #sidebar_B{
+     #center_content{
            width:450px;
      }
-     #sidebar_C{
+
+     #center_content img{
+           width:450px;
+           height:315px;
+     }
+
+     #sidebar_right{
           margin-top:10px;
           width:640px;
           clear:left;
      }
-     #container_3{
+     #section_3{
           margin-top:;
           width:640px;
      }
 }
 
-
+/*Mobile landscape layout*/
 
 @media only screen and (min-width:480px) and (max-width: 767px){
 
-     #container_1{
+     #section_1{
           width:480px;
           margin-bottom:10px;
+          display:none;
      }
 
-     #logo img{
+     #logo{
           width:200px;
-          margin-top:-10px;
+          margin-left:20px;
      }
 
-     #tagline img{
-          margin-top:-17px;
-          width:200px;
+     #tagline{
+          width:240px;
      }
 
-     #container_2{
+     #section_2{
+          margin-top:17px;
           width:480px;
      }
-     #sidebar_A{
+     #sidebar_left{
            width:120px;
            margin-right:20px;
      }
-     li a{
-          margin: 5px 0px 6px 0px;
+
+     #sidebar_left ul{
+          margin-left:-55px;
      }
 
-
-
-     #sidebar_B{
+     #center_content{
            width:120px;
+           position:relative;
      }
 
-     #sidebar_B img{
+     .changingContent{
          width:340px;
-         height:265px; 
+         height:275px; 
      }
 
-     ul
-     {
-         list-style-type: none;
-         margin-left:-50px;
-         margin-top:0px;
+     #mobile_logo{
+          display:block;
+          width:130px;
+          position:absolute;
+          left:5px;
+          bottom:180px;
+          z-index:2;
      }
 
-
-     .group_B{
-          font-size:17px;
+     #blue_oval{
+          display:block;
+          width:130px;
+          background-color:#33CCFF;
+          position:absolute;
+          border:dotted;
+          border-width:1px;
+          bottom:180px;
+          z-index:2;
      }
 
-     #sidebar_C{
+     .buttons{
+          font-size:12px;
+     }
+
+     #sidebar_right{
           margin-top:0px;
           width:470px;
           clear:left;
      }
-     #container_3{
+     #section_3{
           margin-top:;
           width:480px;
      }
@@ -260,38 +262,36 @@ ul
  */
 
 @media only screen and (min-width:320px) and (max-width: 479px){
-     #container_1{
+     #section_1{
           width:320px;
      }
-     #logo img{
+     #logo{
           float:none;
-          margin:0 auto;
      }
      #tagline{
           float:none;
-          margin-left:34px;
-          margin-top:-10px;
+          width:300px;
+          margin:0 auto;
      }
-     #container_2{
+     #section_2{
           width:320px;
      }
-     #sidebar_A{
+     #sidebar_left{
           width:320px;
           float:none;
      }
 
-     ul{
+     #sidebar_left ul{
           list-style-type: none;
           margin-left:-40px;
           margin-top:0px;
      }
 
 
-     .group_B{
+     .buttons{
           font-size:20px;
           font-color:#303534;
           text-decoration:none;
-          display: block;
           background-color:#FFBB00;
           margin: 5px 0px 5px 0px;
           padding: 10px 0px 10px 0px;
@@ -299,15 +299,15 @@ ul
           text-align:center;
      }
 
-     #sidebar_B{
+     #center_content{
           display:none;
      }
-     #sidebar_C{
+     #sidebar_right{
           float:none;
           margin-top:10px;
           width:320px;
      }
-     #container_3{
+     #section_3{
           width:320px;
      }
 }
