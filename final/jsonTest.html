@@ -6,7 +6,7 @@
 <script>
 $(document).ready(function(){
   $("button").click(function(){
-    $.getJSON("data/sample.json",function(result){
+    $.getJSON("http://xanthfan.github.io/FEWD/final/data/sample.json",function(result){
       $.each(result, function(i, field){
         $("div").append(field + " ");
       });
