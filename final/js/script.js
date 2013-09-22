@@ -27,15 +27,15 @@ $(document).ready(function(){
   });
 
    $("#Contact").click(function(){
-    alert("Text: " + $("#test").text());
-  });
-
-//What is going on?
-
-  $.getJSON("http://xanthfan.github.io/FEWD/final/data/sample.json",function(json){
+    $.getJSON("http://xanthfan.github.io/FEWD/final/data/sample.json",function(json){
       $.each(json.result, function(i, course){
         $("#section_3").append(course.title);
       });
     });
+  });
+
+//What is going on?
+
+
      
 });
