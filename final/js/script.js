@@ -27,24 +27,19 @@ $(document).ready(function(){
   });
 
    $("#Contact").click(function(){
-    // console.log("hello");
+    alert("Text: " + $("#test").text());
+  });
+
+});
+
+
     // $.getJSON("http://xanthfan.github.io/FEWD/final/data/sample.json",function(json){
     //   console.log("point2");
     //   $.each(json.results, function(i, course){
     //     $("#section_3").append(course.title);
     //    });
-      $.getJSON("http://xanthfan.github.io/FEWD/final/data/sample2.json",function(result){
-      console.log("point1");
-      $.each(result, function(i, field){
-        $("#section_3").append(field + " ");
-        console.log("point2");
-      });
-    });
-    });
-  });
 
-//What is going on?
+
 
 
      
-});
