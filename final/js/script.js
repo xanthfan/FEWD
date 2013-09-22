@@ -27,10 +27,12 @@ $(document).ready(function(){
   });
 
    $("#Contact").click(function(){
+    // console.log("hello");
     $.getJSON("http://xanthfan.github.io/FEWD/final/data/sample.json",function(json){
-      $.each(json.result, function(i, course){
+      console.log("point2");
+      $.each(json.results, function(i, course){
         $("#section_3").append(course.title);
-      });
+       });
     });
   });
 
