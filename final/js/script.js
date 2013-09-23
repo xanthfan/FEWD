@@ -1,5 +1,12 @@
 $(document).ready(function(){
 
+  $("#Login").click(function(){
+    $("#center_content").empty();
+    var code=$("<iframe class=\"changingContent\" src=\"login.html\" width=centerWidth height=centerHeight frameborder=\"0\"></iframe>"); 
+    $("#center_content").append(code); 
+  });
+
+
   $("#About").click(function(){
     $("#center_content").empty();
     var code=$("<img class =\"changingContent\" src=\"images/sea.jpg\">"); 
@@ -15,19 +22,19 @@ $(document).ready(function(){
   });
 
    $("#Press").click(function(){
-    alert("Text: " + $("#test").text());
+    // alert("Text: " + $("#test").text());
   });
 
    $("#Follow").click(function(){
-    alert("Text: " + $("#test").text());
+    // alert("Text: " + $("#test").text());
   });
 
    $("#Newsletter").click(function(){
-    alert("Text: " + $("#test").text());
+    // alert("Text: " + $("#test").text());
   });
 
    $("#Contact").click(function(){
-    alert("Text: " + $("#test").text());
+    // alert("Text: " + $("#test").text());
   });
 
 });

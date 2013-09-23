@@ -126,6 +126,19 @@
      display:block;
 }
 
+.login{
+     font-family: Arial;
+     margin:0 auto;
+     margin-top:20px;
+     margin-left:60px;
+}
+
+.submit{
+     margin:0 auto;
+     margin-top:20px;
+     margin-left:142px;
+}
+
 /* Tablet Layout: 768px.
  * Gutters: 24px.
  * Outer margins: 28px.
