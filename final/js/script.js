@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+  var latHK = 22.29;
+  var lngHK = 114.18;
+
   $("#Login").click(function(){
     $("#center_content").empty();
     var code=$("<iframe class=\"changingContent\" src=\"login.html\" width=centerWidth height=centerHeight frameborder=\"0\"></iframe>"); 
