@@ -19,12 +19,12 @@
 
     <script type="text/javascript">
 
-    var mapLatLng, happyLatLng, sadLatLng;
+    var mapLatLng, mapZoom, happyLatLng, sadLatLng;
 
     function initialize() {
       var mapOptions = {
         center: mapLatLng,
-        zoom: 11,
+        zoom: mapZoom,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
 
@@ -47,14 +47,11 @@
           icon: "images/sad.png"
         });
 
-        google.maps.event.addListener(map,"dragstart",function(evt){
-            console.log("Dragging the map!")       
-        })
-
         google.maps.event.addListener(map,"dragend",function(evt){
-            console.log("Stopped dragging the map.");
             sessionStorage.mapLat = map.center.lb;
-            sessionStorage.mapLng = map.center.mb;         
+            sessionStorage.mapLng = map.center.mb;
+            sessionStorage.mapZoom = map.zoom;
+            console.log(sessionStorage.mapLat, sessionStorage.mapLng, sessionStorage.mapZoom);         
         })
 
         google.maps.event.addListener(marker,"dragend",function(evt){
@@ -70,8 +67,11 @@
 
     if (!sessionStorage.mapLat){
       mapLatLng = new google.maps.LatLng(jsonstr[0].HK.x, jsonstr[0].HK.y);
+      mapZoom = jsonstr[0].HK.zoom;
     } else {
       mapLatLng = new google.maps.LatLng(sessionStorage.mapLat, sessionStorage.mapLng);
+      mapZoom = Number(sessionStorage.mapZoom);
+      console.log(mapZoom);
     }
 
     if (!sessionStorage.happyLat){
