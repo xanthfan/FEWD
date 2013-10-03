@@ -21,6 +21,9 @@
 
     var mapLatLng, mapZoom, happyLatLng, sadLatLng;
 
+
+    // Helper function statements 
+
     function initialize() {
       var mapOptions = {
         center: mapLatLng,
@@ -47,8 +50,9 @@
           icon: "images/sad.png"
         });
 
+
         google.maps.event.addListener(map,"dragend",function(evt){
-            xyPos = map.getCenter();
+            var xyPos = map.getCenter();
             sessionStorage.mapLat = xyPos.lat();
             sessionStorage.mapLng = xyPos.lng();
         })
@@ -57,23 +61,41 @@
             sessionStorage.mapZoom = map.getZoom(); 
         })
 
-        google.maps.event.addListener(marker,"dragend",function(evt){
-            xyPos = marker.getPosition(); 
-            sessionStorage.happyLat = xyPos.lat();
-            sessionStorage.happyLng = xyPos.lng();    
-        })
+        function addMarkerListener(marker, sessionStorageLat, sessionStorageLng){
+          google.maps.event.addListener(marker, "dragend", function(evt){ 
+            var xyPos = marker.getPosition();
+            console.log("marker:",marker);
+            console.log("xyPos",xyPos);
+            console.log(sessionStorageLat, sessionStorageLng);
+            sessionStorage[sessionStorageLat] = xyPos.lat();
+            sessionStorage[sessionStorageLng] = xyPos.lng();
+          })
+        }
 
+        addMarkerListener(marker, "happyLat", "happyLng");
 
-        google.maps.event.addListener(marker2,"dragend",function(evt){ 
-            xyPos = marker2.getPosition();  
-            sessionStorage.sadLat = xyPos.lat();
-            sessionStorage.sadLng = xyPos.lng();       
-        })
+        addMarkerListener(marker2, "sadLat", "sadLng");
     }
+    // End initialize()
 
+
+    function initLatLng(whichMarker, whichLat, whichLng, index){
+      // console.log("whichLat:", whichLat, typeof(whichLat));
+      // console.log("index:", index, typeof(index));
+      if (!sessionStorage[whichLat]){
+        markerLatLng = new google.maps.LatLng(jsonstr[index][whichMarker].x, jsonstr[index][whichMarker].y);
+        return markerLatLng;
+      } else {
+        markerLatLng = new google.maps.LatLng(sessionStorage[whichLat], sessionStorage[whichLng]);
+        return markerLatLng;
+      }
+    }
+    // End initLatLng()
+
+
+    // Begin main body
     if (!sessionStorage.mapLat){
       mapLatLng = new google.maps.LatLng(jsonstr[0].HK.x, jsonstr[0].HK.y);
-
     } else {
       mapLatLng = new google.maps.LatLng(sessionStorage.mapLat, sessionStorage.mapLng);
     }
@@ -84,22 +106,12 @@
       mapZoom = Number(sessionStorage.mapZoom);
     }
 
-    var initLatLng = function (whichMarker, whichLat, whichLng, index){
-      console.log("whichLat:", whichLat, typeof(whichLat));
-      console.log("index:", index, typeof(index));
-      if (!sessionStorage[whichLat]){
-        markerLatLng = new google.maps.LatLng(jsonstr[index][whichMarker].x, jsonstr[index][whichMarker].y);
-        return markerLatLng;
-      } else {
-        markerLatLng = new google.maps.LatLng(sessionStorage[whichLat], sessionStorage[whichLng]);
-        return markerLatLng;
-      }
-    }
-    
+
+
     happyLatLng = initLatLng("happy", "happyLat", "happyLng", 1);
 
     sadLatLng = initLatLng("sad", "sadLat", "sadLng", 2);
-
+    
     google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
