@@ -22,9 +22,16 @@
     var mapLatLng, mapZoom, happyLatLng, sadLatLng;
 
 
-    // Helper function statements 
+//======================================Helper Functions======================================
 
+
+    //Creates the map and the markers. Is called every time the map HTML page is revisited in its iframe.
+    //The if this is a subsequent reloading of the map page, then the last position and zoom of the map and the position of the markers are recalled from objects stored with the SessionStorage variable. 
     function initialize() {
+
+    // Creating the latitude/longitude object for each map marker
+      happyLatLng = initLatLng("happy", 1);
+      sadLatLng = initLatLng("sad", 2);
 
       var mapOptions = {
         center: mapLatLng,
@@ -65,34 +72,40 @@
             sessionStorage.mapZoom = map.getZoom(); 
         })
 
-        function addMarkerListener(marker, sessionStorageLat, sessionStorageLng){
+        function addMarkerListener(marker, sessionStorageMarker){
           google.maps.event.addListener(marker, "dragend", function(evt){ 
             var xyPos = marker.getPosition();
-            sessionStorage[sessionStorageLat] = xyPos.lat();
-            sessionStorage[sessionStorageLng] = xyPos.lng();
+            var MarkerLatLng = {
+              lat : xyPos.lat(),
+              lng : xyPos.lng()
+            };
+            // sessionStorage[sessionStorageLat] = xyPos.lat();
+            // sessionStorage[sessionStorageLng] = xyPos.lng();
+            sessionStorage[sessionStorageMarker] = JSON.stringify(MarkerLatLng);
           })
         }
 
-        addMarkerListener(marker, "happyLat", "happyLng");
+        addMarkerListener(marker, "happy");
 
-        addMarkerListener(marker2, "sadLat", "sadLng");
+        addMarkerListener(marker2, "sad");
     }
     // End initialize()
 
 
-    function initLatLng(whichMarker, whichLat, whichLng, index){
-      if (!sessionStorage[whichLat]){
+    function initLatLng(whichMarker, index){
+      if (!sessionStorage[whichMarker]){
         markerLatLng = new google.maps.LatLng(jsonstr[index][whichMarker].x, jsonstr[index][whichMarker].y);
         return markerLatLng;
       } else {
-        markerLatLng = new google.maps.LatLng(sessionStorage[whichLat], sessionStorage[whichLng]);
+        var coords = JSON.parse(sessionStorage[whichMarker]);
+        markerLatLng = new google.maps.LatLng(coords.lat, coords.lng);
         return markerLatLng;
       }
     }
-    // End initLatLng()
 
 
-    // Begin main body
+//=====================================Main Body======================================
+
     if (!sessionStorage.mapLatLng){
       mapLatLng = new google.maps.LatLng(jsonstr[0].HK.x, jsonstr[0].HK.y);
     } else {
@@ -105,10 +118,6 @@
     } else {
       mapZoom = Number(sessionStorage.mapZoom);
     }
-
-    // Creating the latitude/longitude object for each map marker
-    happyLatLng = initLatLng("happy", "happyLat", "happyLng", 1);
-    sadLatLng = initLatLng("sad", "sadLat", "sadLng", 2);
     
     // Call initialize() to create the map after the page loads
     google.maps.event.addDomListener(window, 'load', initialize);
@@ -119,6 +128,5 @@
   </head>
   <body>
     <div id="map-canvas">a</div>
-<!--     <button id="save">Save Locations</button> -->
   </body>
 </html>
