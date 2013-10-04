@@ -5,8 +5,33 @@
     //initialize() creates the map and the markers. It is called every time the map HTML page is revisited in its iframe.
     //The if this is a subsequent reloading of the map page, then the last position and zoom of the map and the position of the markers are recalled from objects stored with the SessionStorage variable. 
     function initialize() {
-      var coords, mapOptions, map, marker, marker2;
+      var coords, mapOptions, map, marker1, marker2;
       var mapLatLng, mapZoom, happyLatLng, sadLatLng;
+      var markerList = [];
+
+     function initLatLng(whichMarker, index){
+        if (!sessionStorage[whichMarker]){
+          markerLatLng = new google.maps.LatLng(mapLatLng.lat(), mapLatLng.lng());
+          return markerLatLng;
+        } else {
+          var coords = JSON.parse(sessionStorage[whichMarker]);
+          markerLatLng = new google.maps.LatLng(coords.lat, coords.lng);
+          return markerLatLng;
+        }
+      }
+
+    function addMarkerListener(marker, sessionStorageMarker){
+      google.maps.event.addListener(marker, "dragend", function(evt){ 
+        var xyPos = marker.getPosition();
+        var MarkerLatLng = {
+          lat : xyPos.lat(),
+          lng : xyPos.lng()
+        };
+        sessionStorage[sessionStorageMarker] = JSON.stringify(MarkerLatLng);
+      })
+    }
+
+
 
       if (!sessionStorage.mapLatLng){
         mapLatLng = new google.maps.LatLng(jsonstr[0].HK.x, jsonstr[0].HK.y);
@@ -33,9 +58,9 @@
     // Creating the latitude/longitude object for each map marker
       happyLatLng = initLatLng("happy", 1);
       sadLatLng = initLatLng("sad", 2);
+      funnyLatLng = initLatLng("funny", 3);
 
-
-      marker = new google.maps.Marker({
+      markerList[0] = new google.maps.Marker({        
           position: happyLatLng,
           map: map,
           draggable:true,
@@ -43,12 +68,20 @@
           icon: "images/happy.png"
         });
 
-      marker2 = new google.maps.Marker({
+      markerList[1] = new google.maps.Marker({
           position: sadLatLng,
           map: map,
           draggable:true,
           title:"Sad.",
           icon: "images/sad.png"
+        });
+
+      markerList[2] = new google.maps.Marker({
+          position: funnyLatLng,
+          map: map,
+          draggable:true,
+          title:"Funny!",
+          icon: "images/happy.png"
         });
 
         // Record the position of the map if it gets shifted by the user
@@ -65,38 +98,22 @@
             sessionStorage.mapZoom = map.getZoom(); 
         })
 
-        function addMarkerListener(marker, sessionStorageMarker){
-          google.maps.event.addListener(marker, "dragend", function(evt){ 
-            var xyPos = marker.getPosition();
-            var MarkerLatLng = {
-              lat : xyPos.lat(),
-              lng : xyPos.lng()
-            };
-            // sessionStorage[sessionStorageLat] = xyPos.lat();
-            // sessionStorage[sessionStorageLng] = xyPos.lng();
-            sessionStorage[sessionStorageMarker] = JSON.stringify(MarkerLatLng);
-          })
-        }
 
-        addMarkerListener(marker, "happy");
+        addMarkerListener(markerList[0], "happy");
 
-        addMarkerListener(marker2, "sad");
+        addMarkerListener(markerList[1], "sad");
+
+        addMarkerListener(markerList[2], "funny");      
     }
     // End initialize()
 
 
-    function initLatLng(whichMarker, index){
-      if (!sessionStorage[whichMarker]){
-        markerLatLng = new google.maps.LatLng(jsonstr[index][whichMarker].x, jsonstr[index][whichMarker].y);
-        return markerLatLng;
-      } else {
-        var coords = JSON.parse(sessionStorage[whichMarker]);
-        markerLatLng = new google.maps.LatLng(coords.lat, coords.lng);
-        return markerLatLng;
-      }
+
+
+    function reloadPage(){
+      location.reload();
     }
 
-//=====================================Main Script Body======================================
 
-    // Call initialize() to create the map after the page loads
-    google.maps.event.addDomListener(window, 'load', initialize);
+
+google.maps.event.addDomListener(window, 'load', initialize);
