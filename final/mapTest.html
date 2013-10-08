@@ -14,8 +14,10 @@
   <body>
     <div id="map-canvas">a</div>
     <script src="data/map.jsonp"></script>
-    <script src="js/mapTest.js"></script>
+    <script src="js/mapRebuild.js"></script>
 
-    <input type="button" value="Reload Page" onclick="reloadPage()"></button>
+      <input onclick="clearMarkers();" type=button value="Hide Markers">
+      <input onclick="showMarkers();" type=button value="Show All Markers">
+      <input onclick="deleteMarkers();" type=button value="Delete Markers"> 
   </body>
 </html>
