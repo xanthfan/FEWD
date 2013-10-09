@@ -23,7 +23,7 @@ function initializeMap() {
       markerData.latitude = Number(markerData.latitude);
       markerData.longitude = Number(markerData.longitude); 
       var location = new google.maps.LatLng(markerData.latitude, markerData.longitude);
-      addMarker(location);
+      addMarker(location, "old", i);
     }    
   } 
 
@@ -33,25 +33,39 @@ function initializeMap() {
 }
 
 // Add a marker to the map and push to the array.
-function addMarker(location, state) {
-  var date = new Date();
+function addMarker(location, state, index) {
+  var date;
   var marker = new google.maps.Marker({
     position: location,
     map: map,
     icon: "images/happy.png",
     draggable : true
-    // ,title: date
-  });
-
-  markers.push(marker);
+});
 
   if (state === "new"){
     var markerData = {};
     markerData.latitude = marker.getPosition().lat().toString();
     markerData.longitude = marker.getPosition().lng().toString();
     date = new Date();
-    sessionStorage.setItem( date.getTime(), JSON.stringify(markerData));
+    marker.storageIndex = date.getTime();
+    sessionStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
   }
+
+  if (state === "old"){
+    marker.storageIndex = index;
+  }
+
+  addMarkerListener(marker);
+  markers.push(marker);
+}
+
+function addMarkerListener(marker){
+  google.maps.event.addListener(marker, "dragend", function(evt){ 
+    var markerData = {};
+    markerData.latitude = marker.getPosition().lat().toString();
+    markerData.longitude = marker.getPosition().lng().toString();
+    sessionStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
+  })
 }
 
 // Sets the map on all markers in the array.
@@ -75,6 +89,7 @@ function showMarkers() {
 function deleteMarkers() {
   clearMarkers();
   markers = [];
+  sessionStorage.clear();
 }
 
 
