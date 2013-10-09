@@ -17,12 +17,12 @@ function initializeMap() {
 
   var markerData = {};
 
-  if (sessionStorage.markers){
+  if (sessionStorage){
     for (i in sessionStorage){
       markerData = JSON.parse(sessionStorage[i]);
-      console.log("sessionStorage[i] : ", sessionStorage[i]);
-      console.log("markerData        : ", markerData);
-      location = new google.maps.LatLng(markerData.latitude, markerData.longitude);
+      markerData.latitude = Number(markerData.latitude);
+      markerData.longitude = Number(markerData.longitude); 
+      var location = new google.maps.LatLng(markerData.latitude, markerData.longitude);
       addMarker(location);
     }    
   } 
@@ -43,14 +43,14 @@ function addMarker(location, state) {
     // ,title: date
   });
 
+  markers.push(marker);
+
   if (state === "new"){
     var markerData = {};
     markerData.latitude = marker.getPosition().lat().toString();
     markerData.longitude = marker.getPosition().lng().toString();
     date = new Date();
     sessionStorage.setItem( date.getTime(), JSON.stringify(markerData));
-
-    markers.push(marker);
   }
 }
 
@@ -80,6 +80,3 @@ function deleteMarkers() {
 
 google.maps.event.addDomListener(window, 'load', initializeMap);
 
-// if (sessionStorage.locations){
-//   reloadMarkers();
-// }
