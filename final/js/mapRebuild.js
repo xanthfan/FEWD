@@ -1,7 +1,4 @@
 
-// In the following example, markers appear when the user clicks on the map.
-// The markers are stored in an array.
-// The user can then click an option to hide, show or delete the markers.
 var map;
 var markers = [];
 
@@ -11,7 +8,6 @@ function initializeMap() {
   if (sessionStorage.mapLatLng){
     var temp = JSON.parse(sessionStorage.mapLatLng);
     mapCenter = new google.maps.LatLng(temp.lat, temp.lng);
-    // console.log(mapCenter);
   } else {
     mapCenter = new google.maps.LatLng(22.29, 114.18);
   }
@@ -23,10 +19,11 @@ function initializeMap() {
   }
 
   var mapOptions = {
-    zoom: mapZoom,
     center: mapCenter,
+    zoom: mapZoom,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
+
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
@@ -35,7 +32,6 @@ function initializeMap() {
 
 
   if (sessionStorage){
-    // console.log(sessionStorage);
     for (i in sessionStorage){
       if ((i === "mapZoom") || (i === "mapLatLng")){
         continue;
@@ -100,18 +96,13 @@ function addMarker(state, location, index, title, icon) {
 
   addMarkerListener(marker);
   markers.push(marker);
-
-  // console.log(sessionStorage);
-  // console.log(JSON.parse(sessionStorage.getItem(marker.storageIndex)));
 }
 
 function addMarkerListener(marker){
   google.maps.event.addListener(marker, "dragend", function(evt){ 
-    var markerData = {};
+    var markerData = JSON.parse(sessionStorage.getItem(marker.storageIndex));
     markerData.latitude = marker.getPosition().lat().toString();
     markerData.longitude = marker.getPosition().lng().toString();
-    markerData.title = marker.getTitle();
-    markerData.icon = marker.getIcon();
     sessionStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
   })
 
