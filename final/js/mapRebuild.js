@@ -6,10 +6,25 @@ var map;
 var markers = [];
 
 function initializeMap() {
-  var hongKong = new google.maps.LatLng(22.29, 114.18);
+  var mapCenter , mapZoom;
+
+  if (sessionStorage.mapLatLng){
+    var temp = JSON.parse(sessionStorage.mapLatLng);
+    mapCenter = new google.maps.LatLng(temp.lat, temp.lng);
+    console.log(mapCenter);
+  } else {
+    mapCenter = new google.maps.LatLng(22.29, 114.18);
+  }
+
+  if (sessionStorage.mapZoom){
+    mapZoom = Number(sessionStorage.mapZoom)
+  } else {
+    mapZoom = 11;
+  }
+
   var mapOptions = {
-    zoom: 11,
-    center: hongKong,
+    zoom: mapZoom,
+    center: mapCenter,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -17,8 +32,14 @@ function initializeMap() {
 
   var markerData = {};
 
+
+
   if (sessionStorage){
+    console.log(sessionStorage);
     for (i in sessionStorage){
+      if ((i === "mapZoom") || (i === "mapLatLng")){
+        continue;
+      }
       markerData = JSON.parse(sessionStorage[i]);
       markerData.latitude = Number(markerData.latitude);
       markerData.longitude = Number(markerData.longitude); 
@@ -27,10 +48,25 @@ function initializeMap() {
     }    
   } 
 
+  google.maps.event.addListener(map,"dragend",function(evt){
+      var xyPos = map.getCenter();
+      var mapLatLng = {
+        lat : xyPos.lat(),
+        lng : xyPos.lng()
+      };
+      sessionStorage.mapLatLng = JSON.stringify(mapLatLng);
+  })
+
+  google.maps.event.addListener(map,"zoom_changed",function(evt){
+      sessionStorage.mapZoom = map.getZoom(); 
+  })
+
   google.maps.event.addListener(map, 'click', function(event) {
     addMarker(event.latLng, "new");
   });
+
 }
+
 
 // Add a marker to the map and push to the array.
 function addMarker(location, state, index) {
@@ -92,6 +128,10 @@ function deleteMarkers() {
   sessionStorage.clear();
 }
 
-
+function resetAll(){
+  clearMarkers();
+  markers = [];
+  sessionStorage.clear();
+}
 google.maps.event.addDomListener(window, 'load', initializeMap);
 
