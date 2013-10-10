@@ -5,27 +5,44 @@ var markers = [];
 function initializeMap() {
   var mapCenter , mapZoom;
 
-  if (sessionStorage.mapLatLng){
-    var temp = JSON.parse(sessionStorage.mapLatLng);
-    mapCenter = new google.maps.LatLng(temp.lat, temp.lng);
-  } else {
-    mapCenter = new google.maps.LatLng(22.29, 114.18);
-  }
+
 
   if (sessionStorage.mapZoom){
     mapZoom = Number(sessionStorage.mapZoom)
   } else {
-    mapZoom = 11;
+    mapZoom = 12;
   }
 
   var mapOptions = {
-    center: mapCenter,
+    // center: mapCenter,
     zoom: mapZoom,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
+
+  if (sessionStorage.mapLatLng){
+    var temp = JSON.parse(sessionStorage.mapLatLng);
+    mapCenter = new google.maps.LatLng(temp.lat, temp.lng);
+    map.setCenter(mapCenter);
+  } else {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(position.coords.latitude,
+                                       position.coords.longitude);
+
+      var infowindow = new google.maps.InfoWindow({
+        map: map,
+        position: pos
+        // content: 'Location found using HTML5.'
+      });
+      map.setCenter(pos);
+    });
+    // mapCenter = new google.maps.LatLng(22.29, 114.18);
+    // map.setCenter(mapCenter);
+  }
+
+
 
   var markerData = {};
 
