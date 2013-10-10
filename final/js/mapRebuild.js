@@ -11,7 +11,7 @@ function initializeMap() {
   if (sessionStorage.mapLatLng){
     var temp = JSON.parse(sessionStorage.mapLatLng);
     mapCenter = new google.maps.LatLng(temp.lat, temp.lng);
-    console.log(mapCenter);
+    // console.log(mapCenter);
   } else {
     mapCenter = new google.maps.LatLng(22.29, 114.18);
   }
@@ -41,10 +41,11 @@ function initializeMap() {
         continue;
       }
       markerData = JSON.parse(sessionStorage[i]);
+      console.log(markerData.icon);
       markerData.latitude = Number(markerData.latitude);
       markerData.longitude = Number(markerData.longitude); 
       var location = new google.maps.LatLng(markerData.latitude, markerData.longitude);
-      addMarker(location, "old", i);
+      addMarker("old", location, i, markerData.title, markerData.icon);
     }    
   } 
 
@@ -62,14 +63,14 @@ function initializeMap() {
   })
 
   google.maps.event.addListener(map, 'click', function(event) {
-    addMarker(event.latLng, "new");
+    addMarker("new", event.latLng);
   });
 
 }
 
 
 // Add a marker to the map and push to the array.
-function addMarker(location, state, index) {
+function addMarker(state, location, index, title, icon) {
   var date;
   var marker = new google.maps.Marker({
     position: location,
@@ -82,20 +83,26 @@ function addMarker(location, state, index) {
     var markerData = {};
     markerData.latitude = marker.getPosition().lat().toString();
     markerData.longitude = marker.getPosition().lng().toString();
+    markerData.icon = marker.getIcon();
     date = new Date();
     marker.setTitle(date.toString());
     markerData.title = marker.getTitle();
-    console.log(markerData.title);
+    // console.log(markerData.title);
     marker.storageIndex = date.getTime().toString();
     sessionStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
   }
 
   if (state === "old"){
     marker.storageIndex = index;
+    marker.setTitle(title);
+    marker.setIcon(icon);
   }
 
   addMarkerListener(marker);
   markers.push(marker);
+
+  // console.log(sessionStorage);
+  // console.log(JSON.parse(sessionStorage.getItem(marker.storageIndex)));
 }
 
 function addMarkerListener(marker){
@@ -103,14 +110,23 @@ function addMarkerListener(marker){
     var markerData = {};
     markerData.latitude = marker.getPosition().lat().toString();
     markerData.longitude = marker.getPosition().lng().toString();
+    markerData.title = marker.getTitle();
+    markerData.icon = marker.getIcon();
     sessionStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
   })
 
   google.maps.event.addListener(marker, "click", function(evt){
     if (marker.getIcon() === "images/happy.png") {
       marker.setIcon("images/sad.png");
+      var markerData = JSON.parse(sessionStorage.getItem(marker.storageIndex));
+      markerData.icon = "images/sad.png";
+      sessionStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
+
     } else if (marker.getIcon() === "images/sad.png") {
       marker.setIcon("images/happy.png");
+      var markerData = JSON.parse(sessionStorage.getItem(marker.storageIndex));
+      markerData.icon = "images/happy.png";
+      sessionStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
     }
     
   })
