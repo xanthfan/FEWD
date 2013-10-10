@@ -35,7 +35,7 @@ function initializeMap() {
 
 
   if (sessionStorage){
-    console.log(sessionStorage);
+    // console.log(sessionStorage);
     for (i in sessionStorage){
       if ((i === "mapZoom") || (i === "mapLatLng")){
         continue;
@@ -75,7 +75,7 @@ function addMarker(location, state, index) {
     position: location,
     map: map,
     icon: "images/happy.png",
-    draggable : true
+    draggable : true,
 });
 
   if (state === "new"){
@@ -83,7 +83,10 @@ function addMarker(location, state, index) {
     markerData.latitude = marker.getPosition().lat().toString();
     markerData.longitude = marker.getPosition().lng().toString();
     date = new Date();
-    marker.storageIndex = date.getTime();
+    marker.setTitle(date.toString());
+    markerData.title = marker.getTitle();
+    console.log(markerData.title);
+    marker.storageIndex = date.getTime().toString();
     sessionStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
   }
 
