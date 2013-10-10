@@ -105,7 +105,18 @@ function addMarkerListener(marker){
     markerData.longitude = marker.getPosition().lng().toString();
     sessionStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
   })
+
+  google.maps.event.addListener(marker, "click", function(evt){
+    if (marker.getIcon() === "images/happy.png") {
+      marker.setIcon("images/sad.png");
+    } else if (marker.getIcon() === "images/sad.png") {
+      marker.setIcon("images/happy.png");
+    }
+    
+  })
 }
+
+
 
 // Sets the map on all markers in the array.
 function setAllMap(map) {
