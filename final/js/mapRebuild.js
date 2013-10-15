@@ -5,12 +5,10 @@ var markers = [];
 function initializeMap() {
   var mapCenter , mapZoom;
 
-
-
   if (sessionStorage.mapZoom){
     mapZoom = Number(sessionStorage.mapZoom)
   } else {
-    mapZoom = 12;
+    mapZoom = 18;
   }
 
   var mapOptions = {
@@ -26,6 +24,19 @@ function initializeMap() {
     var temp = JSON.parse(sessionStorage.mapLatLng);
     mapCenter = new google.maps.LatLng(temp.lat, temp.lng);
     map.setCenter(mapCenter);
+
+    var markerData = {};
+    for (i in sessionStorage){
+      if ((i === "mapZoom") || (i === "mapLatLng")){
+        continue;
+      }
+      markerData = JSON.parse(sessionStorage[i]);
+      markerData.latitude = Number(markerData.latitude);
+      markerData.longitude = Number(markerData.longitude); 
+      var location = new google.maps.LatLng(markerData.latitude, markerData.longitude);
+      addMarker("old", location, i, markerData.title, markerData.icon);
+    }  
+
   } else {
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = new google.maps.LatLng(position.coords.latitude,
@@ -37,30 +48,19 @@ function initializeMap() {
         // content: 'Location found using HTML5.'
       });
       map.setCenter(pos);
+
+      var temp = {};
+      temp.lat = pos.lat();
+      temp.lng = pos.lng();
+      sessionStorage.mapLatLng = JSON.stringify(temp);
+
+      addMarker("new", pos); 
+
     });
-    // mapCenter = new google.maps.LatLng(22.29, 114.18);
-    // map.setCenter(mapCenter);
   }
 
 
 
-  var markerData = {};
-
-
-
-  if (sessionStorage){
-    for (i in sessionStorage){
-      if ((i === "mapZoom") || (i === "mapLatLng")){
-        continue;
-      }
-      markerData = JSON.parse(sessionStorage[i]);
-      console.log(markerData.icon);
-      markerData.latitude = Number(markerData.latitude);
-      markerData.longitude = Number(markerData.longitude); 
-      var location = new google.maps.LatLng(markerData.latitude, markerData.longitude);
-      addMarker("old", location, i, markerData.title, markerData.icon);
-    }    
-  } 
 
   google.maps.event.addListener(map,"dragend",function(evt){
       var xyPos = map.getCenter();
@@ -89,8 +89,9 @@ function addMarker(state, location, index, title, icon) {
     position: location,
     map: map,
     icon: "images/happy.png",
-    draggable : true,
+    draggable : true
 });
+
 
   if (state === "new"){
     var markerData = {};
@@ -138,6 +139,16 @@ function addMarkerListener(marker){
     }
     
   })
+
+  google.maps.event.addListener(marker, "mouseover", function(evt){
+    marker.setIcon("images/happyBig.png");
+    console.log("mouseover");
+  })
+
+  //  google.maps.event.addListener(marker, "mouseout", function(evt){
+  //   marker.setIcon("images/happy.png");
+  //   console.log("mouseover");
+  // })
 }
 
 

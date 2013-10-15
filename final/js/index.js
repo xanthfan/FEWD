@@ -13,7 +13,7 @@ $(document).ready(function(){
     $("#center_content").append(code); 
   });
 
-   $("#buttonMap").click(function(){
+   $("#Map").click(function(){
     $("#center_content").empty();
       var centerWidth = $("#center_content").attr("width");
       var centerHeight = $("#center_content").attr("height");
@@ -21,8 +21,12 @@ $(document).ready(function(){
     $("#center_content").append(code); 
   });
 
-   $("#Press").click(function(){
-    // alert("Text: " + $("#test").text());
+   $("#Timeline").click(function(){
+    $("#center_content").empty();
+      var centerWidth = $("#center_content").attr("width");
+      var centerHeight = $("#center_content").attr("height");
+      var code=$("<iframe class=\"changingContent\" src=\"timelineTest.html\" width=centerWidth height=centerHeight frameborder=\"0\"></iframe>"); 
+    $("#center_content").append(code); 
   });
 
    $("#Follow").click(function(){
