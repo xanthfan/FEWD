@@ -140,10 +140,10 @@ function addMarkerListener(marker){
     
   })
 
-  google.maps.event.addListener(marker, "mouseover", function(evt){
-    marker.setIcon("images/happyBig.png");
-    console.log("mouseover");
-  })
+  // google.maps.event.addListener(marker, "mouseover", function(evt){
+  //   marker.setIcon("images/happyBig.png");
+  //   console.log("mouseover");
+  // })
 
   //  google.maps.event.addListener(marker, "mouseout", function(evt){
   //   marker.setIcon("images/happy.png");
