@@ -2,11 +2,14 @@
 var map;
 var markers = [];
 
+
+
+
 function initializeMap() {
   var mapCenter , mapZoom;
 
-  if (sessionStorage.mapZoom){
-    mapZoom = Number(sessionStorage.mapZoom)
+  if (localStorage.mapZoom){
+    mapZoom = Number(localStorage.mapZoom)
   } else {
     mapZoom = 18;
   }
@@ -20,17 +23,17 @@ function initializeMap() {
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
-  if (sessionStorage.mapLatLng){
-    var temp = JSON.parse(sessionStorage.mapLatLng);
+  if (localStorage.mapLatLng){
+    var temp = JSON.parse(localStorage.mapLatLng);
     mapCenter = new google.maps.LatLng(temp.lat, temp.lng);
     map.setCenter(mapCenter);
 
     var markerData = {};
-    for (i in sessionStorage){
+    for (i in localStorage){
       if ((i === "mapZoom") || (i === "mapLatLng")){
         continue;
       }
-      markerData = JSON.parse(sessionStorage[i]);
+      markerData = JSON.parse(localStorage[i]);
       markerData.latitude = Number(markerData.latitude);
       markerData.longitude = Number(markerData.longitude); 
       var location = new google.maps.LatLng(markerData.latitude, markerData.longitude);
@@ -52,7 +55,7 @@ function initializeMap() {
       var temp = {};
       temp.lat = pos.lat();
       temp.lng = pos.lng();
-      sessionStorage.mapLatLng = JSON.stringify(temp);
+      localStorage.mapLatLng = JSON.stringify(temp);
 
       addMarker("new", pos); 
 
@@ -68,11 +71,11 @@ function initializeMap() {
         lat : xyPos.lat(),
         lng : xyPos.lng()
       };
-      sessionStorage.mapLatLng = JSON.stringify(mapLatLng);
+      localStorage.mapLatLng = JSON.stringify(mapLatLng);
   })
 
   google.maps.event.addListener(map,"zoom_changed",function(evt){
-      sessionStorage.mapZoom = map.getZoom(); 
+      localStorage.mapZoom = map.getZoom(); 
   })
 
   google.maps.event.addListener(map, 'click', function(event) {
@@ -103,7 +106,7 @@ function addMarker(state, location, index, title, icon) {
     markerData.title = marker.getTitle();
     // console.log(markerData.title);
     marker.storageIndex = date.getTime().toString();
-    sessionStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
+    localStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
   }
 
   if (state === "old"){
@@ -118,24 +121,24 @@ function addMarker(state, location, index, title, icon) {
 
 function addMarkerListener(marker){
   google.maps.event.addListener(marker, "dragend", function(evt){ 
-    var markerData = JSON.parse(sessionStorage.getItem(marker.storageIndex));
+    var markerData = JSON.parse(localStorage.getItem(marker.storageIndex));
     markerData.latitude = marker.getPosition().lat().toString();
     markerData.longitude = marker.getPosition().lng().toString();
-    sessionStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
+    localStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
   })
 
   google.maps.event.addListener(marker, "click", function(evt){
     if (marker.getIcon() === "images/happy.png") {
       marker.setIcon("images/sad.png");
-      var markerData = JSON.parse(sessionStorage.getItem(marker.storageIndex));
+      var markerData = JSON.parse(localStorage.getItem(marker.storageIndex));
       markerData.icon = "images/sad.png";
-      sessionStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
+      localStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
 
     } else if (marker.getIcon() === "images/sad.png") {
       marker.setIcon("images/happy.png");
-      var markerData = JSON.parse(sessionStorage.getItem(marker.storageIndex));
+      var markerData = JSON.parse(localStorage.getItem(marker.storageIndex));
       markerData.icon = "images/happy.png";
-      sessionStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
+      localStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
     }
     
   })
@@ -174,13 +177,13 @@ function showMarkers() {
 function deleteMarkers() {
   clearMarkers();
   markers = [];
-  sessionStorage.clear();
+  localStorage.clear();
 }
 
 function resetAll(){
   clearMarkers();
   markers = [];
-  sessionStorage.clear();
+  localStorage.clear();
 }
 google.maps.event.addDomListener(window, 'load', initializeMap);
 
