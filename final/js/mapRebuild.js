@@ -1,7 +1,6 @@
-
 var map;
 var markers = [];
-
+var currentMarker = null;
 
 
 
@@ -107,6 +106,7 @@ function addMarker(state, location, index, title, icon) {
     // console.log(markerData.title);
     marker.storageIndex = date.getTime().toString();
     localStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
+    currentMarker = marker;
   }
 
   if (state === "old"){
@@ -117,7 +117,7 @@ function addMarker(state, location, index, title, icon) {
 
   addMarkerListener(marker);
   markers.push(marker);
-}
+} //end addMarker()
 
 function addMarkerListener(marker){
   google.maps.event.addListener(marker, "dragend", function(evt){ 
@@ -140,7 +140,8 @@ function addMarkerListener(marker){
       markerData.icon = "images/happy.png";
       localStorage.setItem( marker.storageIndex, JSON.stringify(markerData));
     }
-    
+    currentMarker = marker;
+
   })
 
   // google.maps.event.addListener(marker, "mouseover", function(evt){
@@ -185,5 +186,14 @@ function resetAll(){
   markers = [];
   localStorage.clear();
 }
-google.maps.event.addDomListener(window, 'load', initializeMap);
 
+function deleteCurrentMarker(){
+  if (currentMarker !== null) {
+    currentMarker.setMap(null);
+    localStorage.removeItem(currentMarker.storageIndex);
+    currentMarker = null;
+  }
+}
+
+
+google.maps.event.addDomListener(window, 'load', initializeMap);
